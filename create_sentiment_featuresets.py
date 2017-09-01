@@ -38,7 +38,7 @@ def create_lexicon(pos, neg): #lexicon is list of words you know
 
     l2 = []
     for w in w_counts:
-        if 1000 > w_counts[w] > 50: #gets rid of words like "the" and also rare words
+        if 2000 > w_counts[w] > 30: #gets rid of words like "the" and also rare words
             l2.append(w)
     print('Length of L2:', len(l2))
     return l2
@@ -73,7 +73,7 @@ def create_feature_sets_and_labels(pos, neg, test_size=0.1):
     lexicon = create_lexicon(pos, neg)
     features = []
     features += sample_handling(pos, lexicon, [1, 0]) #last parameter defines positive as [1, 0]
-    features += sample_handling(neg, lexicon, [1, 0])
+    features += sample_handling(neg, lexicon, [0, 1])
     random.shuffle(features) #important to shuffle for neural network
 
     testing_size = int(test_size*len(features))
