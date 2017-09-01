@@ -81,7 +81,7 @@ def train_neural_network(x):
     n_epochs = 10 #number of epochs
 
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
 
         for epoch in range(n_epochs):
             epoch_loss = 0
