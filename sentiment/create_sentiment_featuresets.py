@@ -38,7 +38,7 @@ def create_lexicon(pos, neg): #lexicon is list of words you know
 
     l2 = []
     for w in w_counts:
-        if 2000 > w_counts[w] > 30: #gets rid of words like "the" and also rare words
+        if 5000 > w_counts[w] > 50: #gets rid of words like "the" and also rare words
             l2.append(w)
     print('Length of L2:', len(l2))
     return l2
