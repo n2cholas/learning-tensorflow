@@ -20,7 +20,7 @@ n_epochs = 3 #number of epochs, cycles of feed forward and backprop
 batch_size = 128 #go through 100 images (test cases) at a time
 chunk_size = 28 #chunks of 28 pixels at a time (for sequence)
 n_chunks = 28
-rnn_size = 256 #instead having all those layers, just rnn size
+rnn_size = 128 #instead having all those layers, just rnn size
 #this rnn size is also quite small
 
 x = tf.placeholder('float', [None, n_chunks, chunk_size]) # x is input data, none because no height (just vector)
