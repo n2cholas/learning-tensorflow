@@ -13,7 +13,7 @@ mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 
 n_classes = 10
-batch_size = 128 #go through 100 images (test cases) at a time
+batch_size = 256 #go through 100 images (test cases) at a time
 n_epochs = 3 #number of epochs, cycles of feed forward and backprop
 
 x = tf.placeholder('float', [None, 784]) # x is input data, none because no height (just vector)
@@ -80,7 +80,10 @@ def train_neural_network(x):
                 #don't care about optimizer, so just underscore that
                 #want the cost, so capture in variable c
                 epoch_loss += c
-            print('Epoch', epoch+1, 'completed out of', n_epochs, 'loss:', epoch_loss)
+
+            correct = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
+            accuracy = tf.reduce_mean(tf.cast(correct, 'float'))
+            print('Epoch', epoch+1, 'completed out of', n_epochs, '  Loss:', epoch_loss, '  Accuracy: ', accuracy.eval({x:mnist.test.images, y:mnist.test.labels}))
 
         correct = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
         #argmax returns index of maximum values in these arrays
